@@ -1,0 +1,21 @@
+<div class="input-wrapper">
+    <div>
+        <span class="input-label">{{label}}</span>
+        <span (click)="toggleShow()" *ngIf="hideable" class="input-show-hide">
+            <img [src]="hideInput ? '../../../assets/icon--eye-closed.svg' : '../../../assets/icon--eye-open.svg'">
+            {{hideInput ? 'Show' : 'Hide'}}
+        </span>
+    </div>
+    <div>
+        <input
+            [type]="hideInput ? 'password': 'default'"
+            [(ngModel)]="val"
+            >
+        <span 
+            (click)="resetVal()"
+            *ngIf="val.length > 0"
+            class="remove-box">
+            X
+        </span>
+    </div>
+</div>
