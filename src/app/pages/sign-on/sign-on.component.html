@@ -1,17 +1,53 @@
 <div class="sign-on">
     <div class="sign-on-grid">
-        <app-input [label]="'Username'">
+        <app-input [label]="'Username'" [(val)]="username">
         </app-input>
-        <app-input [label]="'Username'" [hideable]="true"></app-input>
+        <app-input [label]="'Password'" [(val)]="password" [hideable]="true" [valid]="valid" [errorMessage]="'Invalid username/password combo'"></app-input>
+        <button
+        class="sign-on-button"
+        (click)="signOn()">Sign On</button>
     </div>
-    <div
-        class="footer">
-        <div class="footer-item">Register</div>
+    <div class="footer">
+        <div (click)="showRegistrationPopup()" class="link-text">Register</div>
         <div>|</div>
-        <div class="footer-item">Forgot password?</div>
+        <div (click)="forgotPassword()" class="link-text">Forgot password?</div>
     </div>
 </div>
 
 <div class="hero">
     <img class="hero-img" src="./../../../assets/hero-image.png">
 </div>
+
+
+<app-popup-mask *ngIf="showRegistrationModal">
+    <div class="popup-grid">
+        <div>🐣 New Account</div>
+        <app-input [label]="'Username'" [(val)]="registerUsername"></app-input>
+        <app-input [label]="'Password'" [(val)]="registerPassword" [valid]="registerPasswordValid" [hideable]="true" [errorMessage]="'Password must be 8 characters long and include a number'"></app-input>
+        <app-input [label]="'Email'" [(val)]="registerEmail" [valid]="registerEmailValid" [errorMessage]="'Please enter a valid email'"></app-input>
+        <div style="display: flex; justify-content: space-between;">
+            <div 
+            class="link-text"
+            (click)="closeModal()">Cancel</div>
+            <div
+            (click)="registerAccount()"
+            class="link-text">Register Account</div>
+        </div>
+    </div>
+</app-popup-mask>
+
+
+<app-popup-mask *ngIf="showForgotPasswordModal">
+    <div class="popup-grid">
+        <div>🐣 Forgot Password</div>
+        <app-input [label]="'Email'" [(val)]="forgotPasswordEmail" [valid]="forgotPasswordEmailValid" [errorMessage]="'Please enter a valid email'"></app-input>
+        <div style="display: flex; justify-content: space-between;">
+            <div 
+            class="link-text"
+            (click)="closeModal()">Cancel</div>
+            <div
+            (click)="sendVerificationCode()"
+            class="link-text">Send Verification Code</div>
+        </div>
+    </div>
+</app-popup-mask>

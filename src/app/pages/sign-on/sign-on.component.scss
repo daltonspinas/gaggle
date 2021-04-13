@@ -31,4 +31,29 @@
     position:fixed;
     bottom:0;
     left: calc(25% - 100px);
+    margin-bottom: 15px;
+}
+
+.link-text {
+    font-weight: 800;
+    color: #263A91;
+    cursor: pointer;
+}
+
+.popup-grid {
+    width: 40vw;
+    display: grid;
+    grid-template-columns: auto;
+    grid-gap: 8px;
+  //  margin-top: 50vh;
+}
+
+.sign-on-button {
+    width: 100px;
+    color: white;
+    font-size: 18px;
+    background-color: #263A91;
+    margin: 0 auto;
+    border-radius: 5px;
+    cursor: pointer;
 }

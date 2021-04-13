@@ -7,9 +7,15 @@
         </span>
     </div>
     <div>
+        <img 
+        *ngIf="!valid && val && showError"    
+        [src]="'../../../assets/icon--alert.svg'">
         <input
             [type]="hideInput ? 'password': 'default'"
             [(ngModel)]="val"
+            (keyup)="updateVal()"
+            (focus)="resetError(false)"
+            (blur)="resetError(true)"
             >
         <span 
             (click)="resetVal()"
@@ -17,5 +23,7 @@
             class="remove-box">
             X
         </span>
+        <div *ngIf="!valid && val && showError"
+            class="error-message">{{errorMessage}}</div>
     </div>
 </div>

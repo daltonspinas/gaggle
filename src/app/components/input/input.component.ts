@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, DoCheck, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-input',
@@ -12,8 +12,11 @@ export class InputComponent implements OnInit {
   @Input() valid: boolean = true
   @Input() hideable: boolean = false;
 
+  @Output() valChange = new EventEmitter();
+
 
   hideInput: boolean = false;
+  showError: boolean = true;
 
 
   constructor() { }
@@ -21,12 +24,20 @@ export class InputComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  toggleShow(){
+  toggleShow() {
     this.hideInput = !this.hideInput
   }
 
   resetVal() {
     this.val = ""
+    this.valChange.emit(this.val)
+  }
+  
+  updateVal(){
+    this.valChange.emit(this.val)
   }
 
+  resetError(show: boolean){
+    this.showError = show;
+  }
 }
